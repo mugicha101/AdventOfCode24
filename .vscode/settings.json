@@ -1,7 +1,0 @@
-{
-  "C_Cpp.default.compilerPath": "C:\\msys64\\mingw64\\bin\\g++.exe",
-  "files.associations": {
-    "*.S": "asm-intel-x86-generic",
-    "iomanip": "cpp"
-  }
-}

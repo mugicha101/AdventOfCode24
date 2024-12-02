@@ -1,11 +1,21 @@
 #include "./setup.h"
 
 int main() {
-    // env setup
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    // cout.tie(0); // comment out for baekjoon
-    cout << fixed << setprecision(12);
+    vector<int> la;
+    vector<int> lb;
+    int a, b;
+    while (cin >> a >> b) {
+        la.push_back(a);
+        lb.push_back(b);
+    }
 
-    cout << "Hello World" << endl;
+    int n = la.size();
+    sort(all(la));
+    sort(all(lb));
+    int sum = 0;
+
+    for (int i = 0; i < n; ++i) {
+        sum += abs(la[i] - lb[i]);
+    }
+    cout << sum << endl;
 }
