@@ -14,7 +14,7 @@ if ($recompile) {
     if (Test-Path -Path './tmp/main.txt') {
         Remove-Item ./tmp/main.txt
     }
-    g++ -std=c++17 -W -Wall -O3 -o './tmp/a.exe' -g $path ./setup.h
+    g++ -std=c++23 -W -Wall -O3 -o './tmp/a.exe' -g $path ./setup.h
 }
 if (Test-Path -Path './output.txt') {
     Remove-Item ./output.txt
