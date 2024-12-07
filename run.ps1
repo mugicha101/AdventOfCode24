@@ -14,7 +14,18 @@ if ($recompile) {
     if (Test-Path -Path './tmp/main.txt') {
         Remove-Item ./tmp/main.txt
     }
-    g++ -std=c++23 -W -Wall -O3 -o './tmp/a.exe' -g $path ./setup.h
+    if (Test-Path -Path './tmp/a.cpp') {
+        Remove-Item ./tmp/a.cpp
+    }
+
+    # custom linking (to speed up compilation)
+    $setup = Get-Content ./setup.h
+    $program = Get-Content $path
+    $merged = $setup + $program
+    $filtered = $merged | Where-Object { $_ -notmatch '#include "\./setup\.h"' }
+    $filtered | Out-File -Encoding ASCII ./tmp/a.cpp
+    g++ -std=c++23 -W -Wall -O3 -o './tmp/a.exe' './tmp/a.cpp'
+    Write-Host compiled
 }
 if (Test-Path -Path './output.txt') {
     Remove-Item ./output.txt
